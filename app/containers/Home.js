@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, Image, Button } from 'react-native'
-import { connect } from 'dva'
+import React, { Component } from 'react';
+import { StyleSheet, View, Image, Button } from 'react-native';
+import { connect } from 'dva';
 
-import { NavigationActions } from '../utils'
+import { NavigationActions } from '../utils';
 
 @connect()
 class Home extends Component {
@@ -14,18 +14,18 @@ class Home extends Component {
         style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
         source={require('../images/house.png')}
       />,
-  }
+  };
 
   gotoDetail = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }))
-  }
+    this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
+  };
 
   render() {
     return (
       <View style={styles.container}>
         <Button title="Goto Detail" onPress={this.gotoDetail} />
       </View>
-    )
+    );
   }
 }
 
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
   },
-})
+});
 
-export default Home
+export default Home;
