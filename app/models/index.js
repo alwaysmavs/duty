@@ -1,4 +1,4 @@
-import appModel from './app';
+import appModel from './login/index';
 import router from './router';
 
 export function registerModels(app) {

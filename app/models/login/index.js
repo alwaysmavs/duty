@@ -1,5 +1,5 @@
-import { createAction, NavigationActions } from '../utils';
-import * as authService from '../services/auth';
+import { createAction, NavigationActions } from '../../utils/index';
+import * as authService from '../../services/auth';
 
 export default {
   namespace: 'app',

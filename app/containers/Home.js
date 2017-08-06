@@ -14,11 +14,11 @@ class Home extends Component {
         style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
         source={require('../images/house.png')}
       />,
-  }
+  };
 
   gotoDetail = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
-  }
+  };
 
   render() {
     return (

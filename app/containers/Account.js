@@ -14,11 +14,11 @@ class Account extends Component {
         style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
         source={require('../images/person.png')}
       />,
-  }
+  };
 
   gotoLogin = () => {
     this.props.dispatch(NavigationActions.navigate({ routeName: 'Login' }));
-  }
+  };
 
   render() {
     return (
