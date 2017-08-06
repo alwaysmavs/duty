@@ -1,5 +1,5 @@
-import React, {PureComponent} from 'react';
-import {BackHandler, Animated, Easing} from 'react-native';
+import React, { PureComponent } from 'react';
+import { BackHandler, Animated, Easing } from 'react-native';
 import {
   StackNavigator,
   TabNavigator,
@@ -7,7 +7,7 @@ import {
   addNavigationHelpers,
   NavigationActions,
 } from 'react-navigation';
-import {connect} from 'dva';
+import { connect } from 'dva';
 
 import Login from './containers/Login';
 import Home from './containers/Home';
@@ -16,8 +16,8 @@ import Detail from './containers/Detail';
 
 const HomeNavigator = TabNavigator(
   {
-    Home: {screen: Home},
-    Account: {screen: Account},
+    Home: { screen: Home },
+    Account: { screen: Account },
   },
   {
     tabBarComponent: TabBarBottom,
@@ -30,8 +30,8 @@ const HomeNavigator = TabNavigator(
 
 const MainNavigator = StackNavigator(
   {
-    HomeNavigator: {screen: HomeNavigator},
-    Detail: {screen: Detail},
+    HomeNavigator: { screen: HomeNavigator },
+    Detail: { screen: Detail },
   },
   {
     headerMode: 'float',
@@ -40,8 +40,8 @@ const MainNavigator = StackNavigator(
 
 const AppNavigator = StackNavigator(
   {
-    Main: {screen: MainNavigator},
-    Login: {screen: Login},
+    Main: { screen: MainNavigator },
+    Login: { screen: Login },
   },
   {
     headerMode: 'none',
@@ -56,8 +56,8 @@ const AppNavigator = StackNavigator(
         timing: Animated.timing,
       },
       screenInterpolator: sceneProps => {
-        const {layout, position, scene} = sceneProps;
-        const {index} = scene;
+        const { layout, position, scene } = sceneProps;
+        const { index } = scene;
 
         const height = layout.initHeight;
         const translateY = position.interpolate({
@@ -70,7 +70,7 @@ const AppNavigator = StackNavigator(
           outputRange: [0, 1, 1],
         });
 
-        return {opacity, transform: [{translateY}]};
+        return { opacity, transform: [{ translateY }] };
       },
     }),
   }
@@ -87,7 +87,7 @@ function getCurrentScreen(navigationState) {
   return route.routeName;
 }
 
-@connect(({router}) => ({router}))
+@connect(({ router }) => ({ router }))
 class Router extends PureComponent {
   componentWillMount() {
     BackHandler.addEventListener('hardwareBackPress', this.backHandle);
@@ -107,12 +107,12 @@ class Router extends PureComponent {
       return true;
     }
     return false;
-  };
+  }
 
   render() {
-    const {dispatch, router} = this.props;
-    const navigation = addNavigationHelpers({dispatch, state: router});
-    return <AppNavigator navigation={navigation}/>;
+    const { dispatch, router } = this.props;
+    const navigation = addNavigationHelpers({ dispatch, state: router });
+    return <AppNavigator navigation={navigation} />;
   }
 }
 
