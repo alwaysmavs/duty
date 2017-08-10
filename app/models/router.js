@@ -1,5 +1,5 @@
-import {NavigationActions} from 'react-navigation';
-import {routerReducer} from '../router';
+import { NavigationActions } from 'react-navigation';
+import { routerReducer } from '../router';
 
 const actions = [
     NavigationActions.BACK,
@@ -16,13 +16,13 @@ export default {
         ...routerReducer(),
     },
     reducers: {
-        apply(state, {payload: action}) {
+        apply(state, { payload: action }) {
             return routerReducer(state, action);
         },
     },
     effects: {
         watch: [
-            function* watch({take, put}) {
+            function* watch({ take, put }) {
                 const loop = true;
                 while (loop) {
                     const payload = yield take(actions);
@@ -32,7 +32,7 @@ export default {
                     });
                 }
             },
-            {type: 'watcher'},
+      { type: 'watcher' },
         ],
     },
 };

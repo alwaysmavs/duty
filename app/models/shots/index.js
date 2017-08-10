@@ -1,4 +1,4 @@
-import {fetchShotsList} from './api';
+import { fetchShotsList } from './api';
 
 export default {
     namespace: 'shot',
@@ -13,7 +13,7 @@ export default {
         ],
     },
     effects: {
-        * fetchShotsList({payload}, {call, put}) {
+        *fetchShotsList({ payload }, { call, put }) {
             const shotsList = yield call(fetchShotsList, payload);
             yield put({
                 type: 'saveShotsList',
@@ -24,8 +24,8 @@ export default {
         },
     },
     reducers: {
-        saveShotsList(state, {payload}) {
-            return {...state, shotsListArray: payload.shotsListArray};
+        saveShotsList(state, { payload }) {
+            return { ...state, shotsListArray: payload.shotsListArray };
         },
     },
 };
