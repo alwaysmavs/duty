@@ -1,7 +1,7 @@
-import { url, dribbbleToken } from '../common/const';
+import { url, dribbbleToken } from '../common/const'
 
 export async function fetchShotsList() {
-    const path = '/shots';
+    const path = '/shots'
 
     const result = await fetch(url + path, {
         method: 'GET',
@@ -10,7 +10,7 @@ export async function fetchShotsList() {
             'Content-Type': 'json',
             Authorization: `bearer ${dribbbleToken}`,
         },
-    }).then(res => res.json());
+    }).then(res => res.json())
 
-    return result;
+    return result
 }

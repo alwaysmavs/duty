@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { connect } from 'dva';
+import React, { Component } from 'react'
+import { StyleSheet, View, Text } from 'react-native'
+import { connect } from 'dva'
 
 @connect(({ app }) => ({ ...app }))
 class Login extends Component {
@@ -13,7 +13,7 @@ class Login extends Component {
       <View style={styles.container}>
         <Text>123</Text>
       </View>
-        );
+        )
     }
 }
 
@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-});
+})
 
-export default Login;
+export default Login
