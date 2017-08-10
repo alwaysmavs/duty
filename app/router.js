@@ -13,111 +13,118 @@ import Login from './screen/Login';
 import Home from './screen/HomeScreen';
 import Account from './screen/Account';
 import Detail from './screen/Detail';
+import PropTypes from 'prop-types';
 
 const HomeNavigator = TabNavigator(
-  {
-    Home: { screen: Home },
-    Account: { screen: Account },
-  },
-  {
-    tabBarComponent: TabBarBottom,
-    tabBarPosition: 'bottom',
-    swipeEnabled: false,
-    animationEnabled: false,
-    lazyLoad: true,
-  }
+    {
+        Home: { screen: Home },
+        Account: { screen: Account },
+    },
+    {
+        tabBarComponent: TabBarBottom,
+        tabBarPosition: 'bottom',
+        swipeEnabled: false,
+        animationEnabled: false,
+        lazyLoad: true,
+    }
 );
 
 const MainNavigator = StackNavigator(
-  {
-    HomeNavigator: { screen: HomeNavigator },
-    Detail: { screen: Detail },
-  },
-  {
-    headerMode: 'float',
-  }
+    {
+        HomeNavigator: { screen: HomeNavigator },
+        Detail: { screen: Detail },
+    },
+    {
+        headerMode: 'float',
+    }
 );
 
 const AppNavigator = StackNavigator(
-  {
-    Main: { screen: MainNavigator },
-    Login: { screen: Login },
-  },
-  {
-    headerMode: 'none',
-    mode: 'modal',
-    navigationOptions: {
-      gesturesEnabled: false,
+    {
+        Main: { screen: MainNavigator },
+        Login: { screen: Login },
     },
-    transitionConfig: () => ({
-      transitionSpec: {
-        duration: 300,
-        easing: Easing.out(Easing.poly(4)),
-        timing: Animated.timing,
-      },
-      screenInterpolator: sceneProps => {
-        const { layout, position, scene } = sceneProps;
-        const { index } = scene;
+    {
+        headerMode: 'none',
+        mode: 'modal',
+        navigationOptions: {
+            gesturesEnabled: false,
+        },
+        transitionConfig: () => ({
+            transitionSpec: {
+                duration: 300,
+                easing: Easing.out(Easing.poly(4)),
+                timing: Animated.timing,
+            },
+            screenInterpolator: sceneProps => {
+                const { layout, position, scene } = sceneProps;
+                const { index } = scene;
 
-        const height = layout.initHeight;
-        const translateY = position.interpolate({
-          inputRange: [index - 1, index, index + 1],
-          outputRange: [height, 0, 0],
-        });
+                const height = layout.initHeight;
+                const translateY = position.interpolate({
+                    inputRange: [index - 1, index, index + 1],
+                    outputRange: [height, 0, 0],
+                });
 
-        const opacity = position.interpolate({
-          inputRange: [index - 1, index - 0.99, index],
-          outputRange: [0, 1, 1],
-        });
+                const opacity = position.interpolate({
+                    inputRange: [index - 1, index - 0.99, index],
+                    outputRange: [0, 1, 1],
+                });
 
-        return { opacity, transform: [{ translateY }] };
-      },
-    }),
-  }
+                return { opacity, transform: [{ translateY }] };
+            },
+        }),
+    }
 );
 
 function getCurrentScreen(navigationState) {
-  if (!navigationState) {
-    return null;
-  }
-  const route = navigationState.routes[navigationState.index];
-  if (route.routes) {
-    return getCurrentScreen(route);
-  }
-  return route.routeName;
+    if (!navigationState) {
+        return null;
+    }
+    const route = navigationState.routes[navigationState.index];
+    if (route.routes) {
+        return getCurrentScreen(route);
+    }
+    return route.routeName;
 }
 
 @connect(({ router }) => ({ router }))
 class Router extends PureComponent {
-  componentWillMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.backHandle);
-  }
+    static propTypes = {
+        router: PropTypes.object,
+        dispatch: PropTypes.func,
+    };
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.backHandle);
-  }
-
-  backHandle = () => {
-    const currentScreen = getCurrentScreen(this.props.router);
-    if (currentScreen === 'Login') {
-      return true;
+    componentWillMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.backHandle);
     }
-    if (currentScreen !== 'Home') {
-      this.props.dispatch(NavigationActions.back());
-      return true;
-    }
-    return false;
-  }
 
-  render() {
-    const { dispatch, router } = this.props;
-    const navigation = addNavigationHelpers({ dispatch, state: router });
-    return <AppNavigator navigation={navigation} />;
-  }
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.backHandle);
+    }
+
+    backHandle = () => {
+        const { dispatch, router } = this.props;
+        const currentScreen = getCurrentScreen(router);
+        if (currentScreen === 'Login') {
+            return true;
+        }
+        if (currentScreen !== 'Home') {
+            dispatch(NavigationActions.back());
+            return true;
+        }
+        return false;
+    }
+
+    render() {
+        const { dispatch, router } = this.props;
+        const navigation = addNavigationHelpers({ dispatch, state: router });
+        return <AppNavigator navigation={navigation} />;
+    }
 }
 
 export function routerReducer(state, action = {}) {
-  return AppNavigator.router.getStateForAction(action, state);
+    return AppNavigator.router.getStateForAction(action, state);
 }
 
 export default Router;

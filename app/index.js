@@ -7,11 +7,12 @@ import { registerModels } from './models';
 import Router from './router';
 
 const app = dva({
-  initialState: {},
-  extraEnhancers: [autoRehydrate()],
-  onError(e) {
-    console.log('onError', e);
-  },
+    initialState: {},
+    extraEnhancers: [autoRehydrate()],
+    onError(e) {
+        /* eslint-disable */
+        console.log('onError', e);
+    },
 });
 registerModels(app);
 app.router(() => <Router />);

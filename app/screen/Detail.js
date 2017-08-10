@@ -4,25 +4,25 @@ import { connect } from 'dva';
 
 @connect()
 class Detail extends Component {
-  static navigationOptions = {
-    title: 'Detail',
-  }
+    static navigationOptions = {
+        title: 'Detail',
+    }
 
-  render() {
-    return (
+    render() {
+        return (
       <View style={styles.container}>
         <Text>123</Text>
       </View>
-    );
-  }
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });
 
 export default Detail;
