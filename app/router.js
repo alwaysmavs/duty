@@ -9,10 +9,10 @@ import {
 } from 'react-navigation';
 import { connect } from 'dva';
 
-import Login from './containers/Login';
-import Home from './containers/Home';
-import Account from './containers/Account';
-import Detail from './containers/Detail';
+import Login from './screen/Login';
+import Home from './screen/HomeScreen';
+import Account from './screen/Account';
+import Detail from './screen/Detail';
 
 const HomeNavigator = TabNavigator(
   {
@@ -107,7 +107,7 @@ class Router extends PureComponent {
       return true;
     }
     return false;
-  }
+  };
 
   render() {
     const { dispatch, router } = this.props;

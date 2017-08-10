@@ -1,4 +1,4 @@
-import { delay, NavigationActions } from '../utils';
+import { NavigationActions } from 'react-navigation';
 import { routerReducer } from '../router';
 
 const actions = [
@@ -22,7 +22,7 @@ export default {
   },
   effects: {
     watch: [
-      function* watch({ take, call, put }) {
+      function* watch({ take, put }) {
         const loop = true;
         while (loop) {
           const payload = yield take(actions);
@@ -30,10 +30,6 @@ export default {
             type: 'apply',
             payload,
           });
-          // debounce, see https://github.com/react-community/react-navigation/issues/271
-          if (payload.type === 'Navigation/NAVIGATE') {
-            yield call(delay, 500);
-          }
         }
       },
       { type: 'watcher' },

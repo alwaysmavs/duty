@@ -1,29 +1,25 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Button } from 'react-native';
+import { StyleSheet, View, Image, Text} from 'react-native';
 import { connect } from 'dva';
 
-import { NavigationActions } from '../utils';
-
 @connect()
-class Home extends Component {
+class Account extends Component {
   static navigationOptions = {
-    title: 'Home',
-    tabBarLabel: 'Home',
+    title: 'Account',
+    tabBarLabel: 'Account',
     tabBarIcon: ({ focused, tintColor }) =>
       <Image
         style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
-        source={require('../images/house.png')}
+        source={require('../images/person.png')}
       />,
-  }
+  };
 
-  gotoDetail = () => {
-    this.props.dispatch(NavigationActions.navigate({ routeName: 'Detail' }));
-  }
+
 
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Goto Detail" onPress={this.gotoDetail} />
+        <Text>126</Text>
       </View>
     );
   }
@@ -41,4 +37,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Account;

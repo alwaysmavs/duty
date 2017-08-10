@@ -1,7 +1,7 @@
-import appModel from './login/index';
 import router from './router';
+import shot from './shots/index';
 
 export function registerModels(app) {
-  app.model(appModel);
   app.model(router);
+  app.model(shot);
 }
