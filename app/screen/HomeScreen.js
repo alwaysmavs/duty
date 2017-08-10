@@ -12,7 +12,7 @@ class HomeScreen extends Component {
         style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
         source={require('../images/house.png')}
       />,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -25,7 +25,7 @@ class HomeScreen extends Component {
     dispatch({ type: 'shot/fetchShotsList' });
   }
 
-  keyExtractor = item => item.id
+  keyExtractor = item => item.id;
 
   renderItem = ({ item }) =>
     <Image

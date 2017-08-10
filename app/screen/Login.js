@@ -6,7 +6,7 @@ import { connect } from 'dva';
 class Login extends Component {
   static navigationOptions = {
     title: 'Login',
-  }
+  };
 
   render() {
     return (
