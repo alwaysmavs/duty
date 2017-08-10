@@ -93,7 +93,7 @@ class Router extends PureComponent {
     static propTypes = {
         router: PropTypes.object,
         dispatch: PropTypes.func,
-    };
+    }
 
     componentWillMount() {
         BackHandler.addEventListener('hardwareBackPress', this.backHandle);

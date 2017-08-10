@@ -10,15 +10,15 @@ const app = dva({
     initialState: {},
     extraEnhancers: [autoRehydrate()],
     onError(e) {
-        /* eslint-disable */
-        console.log('onError', e);
-    },
-});
-registerModels(app);
-app.router(() => <Router />);
-const App = app.start();
+    /* eslint-disable */
+    console.log('onError', e)
+  },
+})
+registerModels(app)
+app.router(() => <Router />)
+const App = app.start()
 
 // eslint-disable-next-line no-underscore-dangle
-persistStore(app._store, { storage: AsyncStorage });
+persistStore(app._store, { storage: AsyncStorage })
 
-AppRegistry.registerComponent('DvaStarter', () => App);
+AppRegistry.registerComponent('DvaStarter', () => App)
