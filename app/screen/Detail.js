@@ -6,7 +6,7 @@ import { connect } from 'dva';
 class Detail extends Component {
   static navigationOptions = {
     title: 'Detail',
-  };
+  }
 
   render() {
     return (

@@ -12,7 +12,7 @@ class Account extends Component {
         style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
         source={require('../images/person.png')}
       />,
-  };
+  }
 
   render() {
     return (
