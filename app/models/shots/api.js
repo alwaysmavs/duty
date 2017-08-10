@@ -1,5 +1,4 @@
-import {url,dribbbleToken} from '../common/const';
-
+import { url, dribbbleToken } from '../common/const';
 
 export async function fetchShotsList() {
   const path = '/shots';

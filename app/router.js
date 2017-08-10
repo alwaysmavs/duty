@@ -107,7 +107,7 @@ class Router extends PureComponent {
       return true;
     }
     return false;
-  };
+  }
 
   render() {
     const { dispatch, router } = this.props;

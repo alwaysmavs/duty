@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text} from 'react-native';
+import { StyleSheet, View, Image, Text } from 'react-native';
 import { connect } from 'dva';
 
 @connect()
@@ -12,9 +12,7 @@ class Account extends Component {
         style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
         source={require('../images/person.png')}
       />,
-  };
-
-
+  }
 
   render() {
     return (

@@ -1,19 +1,18 @@
-import React, {Component} from 'react';
-import {StyleSheet, Image, FlatList,Text,View} from 'react-native';
-import {connect} from 'dva';
-import {window} from '../Theme';
-
+import React, { Component } from 'react';
+import { StyleSheet, Image, FlatList, Text, View } from 'react-native';
+import { connect } from 'dva';
+import { window } from '../Theme';
 
 class HomeScreen extends Component {
   static navigationOptions = {
     title: 'dribbble',
     tabBarLabel: 'Home',
-    tabBarIcon: ({focused, tintColor}) =>
+    tabBarIcon: ({ focused, tintColor }) =>
       <Image
-        style={[styles.icon, {tintColor: focused ? tintColor : 'gray'}]}
+        style={[styles.icon, { tintColor: focused ? tintColor : 'gray' }]}
         source={require('../images/house.png')}
       />,
-  };
+  }
 
   constructor(props) {
     super(props);
@@ -22,23 +21,22 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    const {dispatch} = this.props;
-    dispatch({type: 'shot/fetchShotsList'});
+    const { dispatch } = this.props;
+    dispatch({ type: 'shot/fetchShotsList' });
   }
 
-  keyExtractor = (item) => item.id;
+  keyExtractor = item => item.id
 
-  renderItem = ({item}) => (
+  renderItem = ({ item }) =>
     <Image
-      style={{width:window.width,height:(window.width * 3)/4}}
-      source={{uri: item.images.normal}}
+      style={{ width: window.width, height: window.width * 3 / 4 }}
+      source={{ uri: item.images.normal }}
     />
-  );
 
   render() {
-    const {shotsListArray} = this.props;
+    const { shotsListArray } = this.props;
 
-    if (shotsListArray[0].images.normal === ''){
+    if (shotsListArray[0].images.normal === '') {
       return (
         <View>
           <Text>123</Text>
@@ -69,10 +67,9 @@ const styles = StyleSheet.create({
   },
 });
 
-
-function mapStateToProps({shot}) {
+function mapStateToProps({ shot }) {
   return {
-    shotsListArray: shot.shotsListArray
+    shotsListArray: shot.shotsListArray,
   };
 }
 
