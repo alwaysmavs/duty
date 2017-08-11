@@ -1,15 +1,15 @@
-import React from 'react'
-import { AppRegistry, AsyncStorage } from 'react-native'
-import dva from 'dva/mobile'
-import { persistStore, autoRehydrate } from 'redux-persist'
+import React from 'react';
+import { AppRegistry, AsyncStorage } from 'react-native';
+import dva from 'dva/mobile';
+import { persistStore, autoRehydrate } from 'redux-persist';
 
-import { registerModels } from './models'
-import Router from './router'
+import { registerModels } from './models';
+import Router from './router';
 
 const app = dva({
-  initialState: {},
-  extraEnhancers: [autoRehydrate()],
-  onError(e) {
+    initialState: {},
+    extraEnhancers: [autoRehydrate()],
+    onError(e) {
     /* eslint-disable */
     console.log('onError', e)
   },
