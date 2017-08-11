@@ -89,7 +89,6 @@ function getCurrentScreen(navigationState) {
 
 @connect(({ router }) => ({ router }))
 class Router extends PureComponent {
-
   componentWillMount() {
     BackHandler.addEventListener('hardwareBackPress', this.backHandle);
   }
